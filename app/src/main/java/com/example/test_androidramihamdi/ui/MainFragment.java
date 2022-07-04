@@ -48,7 +48,7 @@ public class MainFragment extends Fragment implements RecyclerViewClickInterface
     RetrofitViewModel retrofitViewModel;
     RoomViewModel roomViewModel;
 
-   // RetrofitWithPagingViewModel mainActivityViewModel;
+   // RetrofitWithPagingViewModel retrofitWithPagingViewModel;
 
     @Override
     public View onCreateView(
@@ -67,12 +67,12 @@ public class MainFragment extends Fragment implements RecyclerViewClickInterface
         roomViewModel = new ViewModelProvider(requireActivity()).get(RoomViewModel.class);
 
         // Create ViewModel WHEN USING PAGING TO FINISH LATER
-     //   mainActivityViewModel = new ViewModelProvider(requireActivity()).get(RetrofitWithPagingViewModel.class);
+     //   retrofitWithPagingViewModel = new ViewModelProvider(requireActivity()).get(RetrofitWithPagingViewModel.class);
 
 
         initRecyclerView();
         // Subscribe to to paging data To finish
-    /*    mainActivityViewModel.imagePagingDataFlowable.subscribe(imagePagingData -> {
+    /*    retrofitWithPagingViewModel.imagePagingDataFlowable.subscribe(imagePagingData -> {
             // submit new data to recyclerview adapter
 
             recyclerViewAdapter.submitData(getLifecycle(), imagePagingData);
