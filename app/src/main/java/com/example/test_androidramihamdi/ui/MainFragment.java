@@ -48,7 +48,7 @@ public class MainFragment extends Fragment implements RecyclerViewClickInterface
     RetrofitViewModel retrofitViewModel;
     RoomViewModel roomViewModel;
 
-   // RetrofitWithPagingViewModel retrofitWithPagingViewModel;
+    // RetrofitWithPagingViewModel retrofitWithPagingViewModel;
 
     @Override
     public View onCreateView(
@@ -67,7 +67,7 @@ public class MainFragment extends Fragment implements RecyclerViewClickInterface
         roomViewModel = new ViewModelProvider(requireActivity()).get(RoomViewModel.class);
 
         // Create ViewModel WHEN USING PAGING TO FINISH LATER
-     //   retrofitWithPagingViewModel = new ViewModelProvider(requireActivity()).get(RetrofitWithPagingViewModel.class);
+        //   retrofitWithPagingViewModel = new ViewModelProvider(requireActivity()).get(RetrofitWithPagingViewModel.class);
 
 
         initRecyclerView();
@@ -150,9 +150,9 @@ public class MainFragment extends Fragment implements RecyclerViewClickInterface
 
     private void initRecyclerView() {
         binding.recyclerView.setHasFixedSize(true);
-      //  StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL);
-       // staggeredGridLayoutManager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_NONE);
-       // binding.recyclerView.setLayoutManager(staggeredGridLayoutManager);
+        //  StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL);
+        // staggeredGridLayoutManager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_NONE);
+        // binding.recyclerView.setLayoutManager(staggeredGridLayoutManager);
 
 // Create GridlayoutManger with span of count of 2
         GridLayoutManager gridLayoutManager = new GridLayoutManager(requireContext(), 2, GridLayoutManager.VERTICAL, false);
@@ -179,7 +179,7 @@ public class MainFragment extends Fragment implements RecyclerViewClickInterface
 
 
         //
-        //moviesAdapter.addLoadStateListener();
+        //imagesAdapter.addLoadStateListener();
         // set Grid span to set progress at center
         gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
             @Override
@@ -192,7 +192,7 @@ public class MainFragment extends Fragment implements RecyclerViewClickInterface
 
     private void fillRecyclerView(List<RecyclerData> recyclerData) {
         recyclerViewAdapter.setListItems(recyclerData);
-       recyclerViewAdapter.notifyDataSetChanged();
+        recyclerViewAdapter.notifyDataSetChanged();
     }
 
 
@@ -245,20 +245,20 @@ public class MainFragment extends Fragment implements RecyclerViewClickInterface
 
     private void observeForRoomChanges() {
 
-       // if (!InternetCheck.isInternetAvailable(requireContext())){ //Load cached data onlywhen wifi and mobile data off
+        // if (!InternetCheck.isInternetAvailable(requireContext())){ //Load cached data onlywhen wifi and mobile data off
 
-            roomViewModel.queriedRecyclerDataList.observe(getViewLifecycleOwner(), new Observer<List<RecyclerData>>() {
-                @Override
-                public void onChanged(List<RecyclerData> recyclerData) {
-                    fillRecyclerView(recyclerData);
+        roomViewModel.queriedRecyclerDataList.observe(getViewLifecycleOwner(), new Observer<List<RecyclerData>>() {
+            @Override
+            public void onChanged(List<RecyclerData> recyclerData) {
+                fillRecyclerView(recyclerData);
 
-                    setprogressbarVisibility(false);
+                setprogressbarVisibility(false);
 
-                    if(recyclerData.size()==0) initSnackbar(getString(R.string.noResult), getString(R.string.success));
-                    removeRoomObserver();
-                }
-            });
-    //   }
+                if(recyclerData.size()==0) initSnackbar(getString(R.string.noResult), getString(R.string.success));
+                removeRoomObserver();
+            }
+        });
+        //   }
 
 
 

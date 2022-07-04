@@ -20,7 +20,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class RecyclersLoadStateAdapterPagingToFINISH extends LoadStateAdapter<RecyclersLoadStateAdapterPagingToFINISH.LoadStateViewHolder> {
     // Define Retry Callback
-    private View.OnClickListener mRetryCallback;
+    private final View.OnClickListener mRetryCallback;
 
     public RecyclersLoadStateAdapterPagingToFINISH(View.OnClickListener retryCallback) {
         // Init Retry Callback

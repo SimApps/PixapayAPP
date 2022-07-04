@@ -24,7 +24,7 @@ public class RetrofitWithPagingViewModel extends ViewModel {
     // Init ViewModel Data
     private void init() {
         // Define Paging Source
-        PixabayPagingSourceToFINISH moviePagingSource = new PixabayPagingSourceToFINISH();
+        PixabayPagingSourceToFINISH imagePagingSource = new PixabayPagingSourceToFINISH();
 
         // Create new Pager
         Pager<Integer, RecyclerData> pager = new Pager(
@@ -34,7 +34,7 @@ public class RetrofitWithPagingViewModel extends ViewModel {
                         false, // Enable placeholders for data which is not yet loaded
                         20, // initialLoadSize - Count of items to be loaded initially
                         20 * 499),// maxSize - Count of total items to be shown in recyclerview
-                () -> moviePagingSource); // set paging source
+                () -> imagePagingSource); // set paging source
 
         // inti Flowable
         imagePagingDataFlowable = PagingRx.getFlowable(pager);
