@@ -8,6 +8,8 @@
     <string name="non">Non</string>
     <string name="oui">Oui</string>
 
+    <string name="noResult">Pas de Resultat ! Taper success par exemple</string>
+
     <string name="erreur_conexion">Erreur . . . Vérifier votre connexion %s</string>
     <string name="reessaye">Réessaye</string>
 

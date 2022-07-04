@@ -79,7 +79,8 @@ public class RoomViewModel extends AndroidViewModel {
                     @Override
                     public void onComplete() {
                         Log.d("TAG", "Inside onComplete of addImage in ViewModel");
-                      //  successToast("User added successfully");
+                      //  successToast("cache data added successfully");
+                        queriedRecyclerDataList = null;
 
                     }
 

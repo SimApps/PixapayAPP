@@ -46,6 +46,7 @@ public class RetrofitViewModel extends ViewModel {
     public StateLiveData<List<RecyclerData>> getLiveData(){
         if(responseListLiveData==null ){
             responseListLiveData = new StateLiveData<>();
+            //when app first open or responseListLiveData not initialazed
             makeApiCall("success");
         }
 

@@ -26,24 +26,26 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
   }
 
      static   RecyclerViewClickInterface recyclerViewClickInterface;
+    /*
+    //PAGING VERSION
     public static DiffUtil.ItemCallback<RecyclerData> DIFF_CALLBACK = new DiffUtil.ItemCallback<RecyclerData>() {
-        @Override
-        public boolean areItemsTheSame(@NonNull RecyclerData oldItem, @NonNull RecyclerData newItem) {
-            return oldItem.id == newItem.id;
-        }
+          @Override
+          public boolean areItemsTheSame(@NonNull RecyclerData oldItem, @NonNull RecyclerData newItem) {
+              return oldItem.id == newItem.id;
+          }
 
-        @Override
-        public boolean areContentsTheSame(@NonNull RecyclerData oldItem, @NonNull RecyclerData newItem) {
-            return oldItem.equals(newItem);
-        }
-    };
+          @Override
+          public boolean areContentsTheSame(@NonNull RecyclerData oldItem, @NonNull RecyclerData newItem) {
+              return oldItem.equals(newItem);
+          }
+      };
 
-  /*
-  //PAGING VERSION
-  public RecyclerViewAdapter(RecyclerViewClickInterface itemClickListener) {
-        super(DIFF_CALLBACK); WITHPAGING
-        this.recyclerViewClickInterface = itemClickListener;
-    }*/
+
+
+    public RecyclerViewAdapter(RecyclerViewClickInterface itemClickListener) {
+          super(DIFF_CALLBACK); WITHPAGING
+          this.recyclerViewClickInterface = itemClickListener;
+      }*/
   public RecyclerViewAdapter(RecyclerViewClickInterface recyclerViewClickInterface) {
       RecyclerViewAdapter.recyclerViewClickInterface = recyclerViewClickInterface;
   }

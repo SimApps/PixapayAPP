@@ -47,41 +47,43 @@ public class AppModule  {
     public Retrofit RetrofitgetRetroInstance(){
         return new Retrofit.Builder()
                 .baseUrl(BASE_URL)
-                .client(client)
+                .client(client("1"))
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
     }
 
 
-    private static final OkHttpClient client = new OkHttpClient.Builder()
-            // establish connection to server
-            .connectTimeout(CONNECTION_TIMEOUT, TimeUnit.SECONDS)
-            // time between each byte read from the server
-            .readTimeout(READ_TIMEOUT, TimeUnit.SECONDS)
-            // time between each byte sent to server
-            .writeTimeout(WRITE_TIMEOUT, TimeUnit.SECONDS)
-            .retryOnConnectionFailure(false)
-            .addInterceptor(chain -> {
-                Request original = chain.request();
-                HttpUrl originalHttpUrl = original.url();
-                HttpUrl url = originalHttpUrl
-                        .newBuilder()
-                        .addQueryParameter("page", "1")
+    private static  OkHttpClient client(String page) {
+    return     new OkHttpClient.Builder()
+                // establish connection to server
+                .connectTimeout(CONNECTION_TIMEOUT, TimeUnit.SECONDS)
+                // time between each byte read from the server
+                .readTimeout(READ_TIMEOUT, TimeUnit.SECONDS)
+                // time between each byte sent to server
+                .writeTimeout(WRITE_TIMEOUT, TimeUnit.SECONDS)
+                .retryOnConnectionFailure(false)
+                .addInterceptor(chain -> {
+                    Request original = chain.request();
+                    HttpUrl originalHttpUrl = original.url();
+                    HttpUrl url = originalHttpUrl
+                            .newBuilder()
+                            .addQueryParameter("page", page)
 
-                        .addQueryParameter("image_type", "all")// "all", "photo", "illustration", "vector"
-                        .addQueryParameter("pretty", "false")
-                        .addQueryParameter("per_page", "90") //3 - 200
-                        .addQueryParameter("order", "popular") //Accepted values: "popular", "latest"
-                        .addQueryParameter("safesearch", "false") //Accepted values: "true", "false"
-                        .build();
-                Request.Builder requestBuilder = original
-                        .newBuilder()
-                        .url(url);
-                Request request = requestBuilder.build();
-                return chain.proceed(request);
-            })
-            .addInterceptor(loggingInterceptor())
-            .build();
+                            .addQueryParameter("image_type", "all")// "all", "photo", "illustration", "vector"
+                            .addQueryParameter("pretty", "false")
+                            .addQueryParameter("per_page", "90") //3 - 200
+                            .addQueryParameter("order", "popular") //Accepted values: "popular", "latest"
+                            .addQueryParameter("safesearch", "false") //Accepted values: "true", "false"
+                            .build();
+                    Request.Builder requestBuilder = original
+                            .newBuilder()
+                            .url(url);
+                    Request request = requestBuilder.build();
+                    return chain.proceed(request);
+                })
+                .addInterceptor(loggingInterceptor())
+                .build();
+    }
 
 
     private static HttpLoggingInterceptor loggingInterceptor() {

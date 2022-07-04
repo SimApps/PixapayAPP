@@ -26,6 +26,7 @@ import com.example.test_androidramihamdi.viewmodel.RoomViewModel;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 import dagger.hilt.android.AndroidEntryPoint;
@@ -210,20 +211,16 @@ public class MainFragment extends Fragment implements RecyclerViewClickInterface
 
                         fillRecyclerView(reclerDtaList);
 
+                        if(reclerDtaList.size()==0) initSnackbar(getString(R.string.noResult), getString(R.string.success));
 
                     }
 
-
-                    // if(recyclerData.getData().isEmpty()) Toast.makeText(requireContext(), "empty",  Toast.LENGTH_LONG).show();
                     break;
 
                 case ERROR:
                     if (recyclerData.getError() != null) {
-                        setprogressbarVisibility(false);
                         initSnackbar(recyclerData.getError().toString(), binding.searchView.getQuery().toString());
                         //Load data from Room
-
-
                         queryRoomInit(binding.searchView.getQuery().toString());
                         observeForRoomChanges();
                     }
@@ -247,19 +244,21 @@ public class MainFragment extends Fragment implements RecyclerViewClickInterface
     }
 
     private void observeForRoomChanges() {
-        if (!InternetCheck.isInternetAvailable(requireContext())){
-            setprogressbarVisibility(true);
+
+       // if (!InternetCheck.isInternetAvailable(requireContext())){ //Load cached data onlywhen wifi and mobile data off
 
             roomViewModel.queriedRecyclerDataList.observe(getViewLifecycleOwner(), new Observer<List<RecyclerData>>() {
                 @Override
                 public void onChanged(List<RecyclerData> recyclerData) {
                     fillRecyclerView(recyclerData);
-                    Toast.makeText(requireContext(), "observeForRoomChangesD", Toast.LENGTH_LONG).show();
+
                     setprogressbarVisibility(false);
+
+                    if(recyclerData.size()==0) initSnackbar(getString(R.string.noResult), getString(R.string.success));
                     removeRoomObserver();
                 }
             });
-       }
+    //   }
 
 
 
@@ -274,14 +273,14 @@ public class MainFragment extends Fragment implements RecyclerViewClickInterface
 
 
     private void initSnackbar(String message, String queryvalue) {
-        setprogressbarVisibility(false);
         snackbar = Snackbar.make(requireView(), message, Snackbar.LENGTH_INDEFINITE)
                 .setAction(R.string.reessaye, v -> {
                     if (InternetCheck.isInternetAvailable(v.getContext())) {
-                        setprogressbarVisibility(true);
+                        binding.searchView.setQuery(queryvalue,true);
+                        if(Objects.equals(queryvalue, getString(R.string.success))) {
+                            binding.searchView.setQueryHint(queryvalue);
+                        }
 
-                        // ObserveRetrofitCall(queryvalue);
-                        retrofitViewModel.makeApiCall(queryvalue);
 
                     } else initSnackbar(getString(R.string.erreur_conexion, ""), queryvalue);
                 });
@@ -299,8 +298,7 @@ public class MainFragment extends Fragment implements RecyclerViewClickInterface
 
         if (roomViewModel != null) {
             roomViewModel.getQueryString().observe(getViewLifecycleOwner(), query -> {
-                setprogressbarVisibility(true);
-                retrofitViewModel.makeApiCall(query);
+                binding.searchView.setQuery(query,true);
             });
         }
     }

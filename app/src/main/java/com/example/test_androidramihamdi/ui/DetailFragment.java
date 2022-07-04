@@ -1,16 +1,23 @@
 package com.example.test_androidramihamdi.ui;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 import com.example.test_androidramihamdi.R;
 import com.example.test_androidramihamdi.databinding.FragmentDetailBinding;
 import com.example.test_androidramihamdi.viewmodel.RetrofitViewModel;
@@ -52,11 +59,37 @@ public class DetailFragment extends Fragment {
             binding.fragmentDetailDownloads.setText(item.downloads);
 
 
-            Glide.with(requireContext())
+
+            Glide.with(this)
+                    .load(item.largeImageURL)
+                    .listener(new RequestListener<Drawable>() {
+                        @Override
+                        public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                            binding.progressBarDetailFrag.setVisibility(View.GONE);
+
+                            if (e != null) {
+                                Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_LONG).show();
+                            }
+                            return false;
+                        }
+
+                        @Override
+                        public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                            binding.progressBarDetailFrag.setVisibility(View.GONE);
+
+                            return false;
+                        }
+
+
+                    })
+                    .into(binding.fragmentDetailImage);
+
+
+        /*    Glide.with(requireContext())
                     .load(item.largeImageURL)
                     .placeholder(R.drawable.ic_image_placeholder)
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .into(binding.fragmentDetailImage);
+                    .into(binding.fragmentDetailImage)*/
 
         });
 
