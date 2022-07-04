@@ -48,24 +48,20 @@
                     android:id="@+id/author_pixbay_txVw"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="right"
                     android:gravity="center"
                     android:singleLine="true"
                     android:text="user name Here"
                     android:textColor="@color/orange"
-                    android:textStyle="bold"
-                    tools:text="IMAGE - FRUIT - FLOWER" />
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/tags_pixbay_txVw"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="left"
                     android:singleLine="true"
                     android:text="Tags Here"
                     android:textColor="@color/white"
-                    android:textSize="14sp"
-                    tools:text="kaffka_PHOTOS" />
+                    android:textSize="14sp" />
 
             </LinearLayout>
 
