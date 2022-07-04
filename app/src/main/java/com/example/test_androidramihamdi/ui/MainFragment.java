@@ -276,7 +276,8 @@ public class MainFragment extends Fragment implements RecyclerViewClickInterface
         snackbar = Snackbar.make(requireView(), message, Snackbar.LENGTH_INDEFINITE)
                 .setAction(R.string.reessaye, v -> {
                     if (InternetCheck.isInternetAvailable(v.getContext())) {
-
+                        initSnackbar(getString(R.string.erreur_conexion, ""), queryvalue);
+                    }
                         if(Objects.equals(message, getString(R.string.noResult))) {
                             binding.searchView.setQuery(getString(R.string.success),true);
                             binding.searchView.setQueryHint(getString(R.string.success));
@@ -287,10 +288,10 @@ public class MainFragment extends Fragment implements RecyclerViewClickInterface
                         }
 
 
-                    }
-                    else{
-                        initSnackbar(getString(R.string.erreur_conexion, ""), queryvalue);
-                    }
+
+
+
+
                 });
         snackbar.show();
 
