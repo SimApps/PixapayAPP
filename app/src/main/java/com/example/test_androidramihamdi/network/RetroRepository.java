@@ -28,10 +28,17 @@ public class RetroRepository {
     }
 
 
-    public  void makeAPICall(String query, StateLiveData<List<RecyclerData>> responseListLiveData){
+    public  void makeAPICall(String query, StateLiveData<List<RecyclerData>> responseListLiveData/*,String page*/){
         responseListLiveData.postLoading();
 
-        Call<RecyclerList> call = retroServiceInterface.getImagesFromPixabay(API_KEY,query);
+        Call<RecyclerList> call = retroServiceInterface.getImagesFromPixabay(API_KEY,query/*,page*/);
+        /**
+         * whe can pass page as a prameter fora temporary measure util proper implementation of paging
+         * 1 get list siez from recycler list
+         * 2 say divide list sieze by item per page
+         * 3 populate a rceycler view with number from 1 to result in step 2
+         * 4 make call whit recycler view idenx as a page number
+         */
 
         call.enqueue(new Callback<RecyclerList>() {
             @Override
