@@ -219,7 +219,14 @@ public class MainFragment extends Fragment implements RecyclerViewClickInterface
 
                 case ERROR:
                     if (recyclerData.getError() != null) {
-                        initSnackbar(recyclerData.getError().toString(), binding.searchView.getQuery().toString());
+                        if (!InternetCheck.isInternetAvailable(requireContext())) {
+                            initSnackbar(getString(R.string.erreur_conexion, ""), binding.searchView.getQuery().toString());
+                        }
+                        else{
+                            initSnackbar(recyclerData.getError().toString(), binding.searchView.getQuery().toString());
+                        }
+
+
                         //Load data from Room
                         queryRoomInit(binding.searchView.getQuery().toString());
                         observeForRoomChanges();
@@ -275,9 +282,7 @@ public class MainFragment extends Fragment implements RecyclerViewClickInterface
     private void initSnackbar(String message, String queryvalue) {
         snackbar = Snackbar.make(requireView(), message, Snackbar.LENGTH_INDEFINITE)
                 .setAction(R.string.reessaye, v -> {
-                    if (InternetCheck.isInternetAvailable(v.getContext())) {
-                        initSnackbar(getString(R.string.erreur_conexion, ""), queryvalue);
-                    }
+
                         if(Objects.equals(message, getString(R.string.noResult))) {
                             binding.searchView.setQuery(getString(R.string.success),true);
                             binding.searchView.setQueryHint(getString(R.string.success));
@@ -286,11 +291,6 @@ public class MainFragment extends Fragment implements RecyclerViewClickInterface
                             binding.searchView.setQuery(queryvalue,true);
                             binding.searchView.setQueryHint(queryvalue);
                         }
-
-
-
-
-
 
                 });
         snackbar.show();
