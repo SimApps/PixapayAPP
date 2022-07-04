@@ -52,7 +52,7 @@
                     android:gravity="center"
                     android:singleLine="true"
                     android:text="user name Here"
-                    android:textColor="@color/white"
+                    android:textColor="@color/orange"
                     android:textStyle="bold"
                     tools:text="IMAGE - FRUIT - FLOWER" />
 
@@ -63,7 +63,7 @@
                     android:layout_gravity="left"
                     android:singleLine="true"
                     android:text="Tags Here"
-                    android:textColor="@color/orange"
+                    android:textColor="@color/white"
                     android:textSize="14sp"
                     tools:text="kaffka_PHOTOS" />
 
