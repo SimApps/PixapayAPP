@@ -254,7 +254,7 @@ public class MainFragment extends Fragment implements RecyclerViewClickInterface
                 @Override
                 public void onChanged(List<RecyclerData> recyclerData) {
                     fillRecyclerView(recyclerData);
-                    Toast.makeText(requireContext(), "observeForRoomChanges", Toast.LENGTH_LONG).show();
+                    Toast.makeText(requireContext(), "observeForRoomChangesD", Toast.LENGTH_LONG).show();
                     setprogressbarVisibility(false);
                     removeRoomObserver();
                 }
