@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">test - Android Rami Hamdi</string>
+
+    <!-- Strings used for fragments for navigation -->
+    <string name="main_fragment">Main Fragment</string>
+
+
+    <string name="non">Non</string>
+    <string name="oui">Oui</string>
+
+    <string name="erreur_conexion">Erreur . . . Vérifier votre connexion %s</string>
+    <string name="reessaye">Réessaye</string>
+
+    <string name="success">success</string>
+
+    <string name="seedtail">Voulez vous voir plus de détail?</string>
+    <string name="infodetail">Nom utilisateur :  %s , Tags : %s </string>
+    <string name="erreur">Erreur</string>
+    <string name="erreur_room_empty">Erreur . . . base de donnée vide ! </string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>

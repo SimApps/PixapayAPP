@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+
+    tools:context=".ui.DetailFragment">
+
+
+    <LinearLayout
+        android:id="@+id/linearLayoutheader"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/colorTransparentDark"
+        android:orientation="vertical"
+        android:padding="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <TextView
+            android:id="@+id/fragment_detail_user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:textColor="@color/orange"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:text="user name" />
+
+        <TextView
+            android:id="@+id/fragment_detail_tags"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            tools:text="tags" />
+
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/fragment_detail_image"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/ic_image_placeholder"
+        app:layout_constraintBottom_toTopOf="@id/linearlayoutfooter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linearLayoutheader" />
+
+    <LinearLayout
+        android:id="@+id/linearlayoutfooter"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/colorTransparentDark"
+        android:orientation="horizontal"
+        android:padding="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/fragment_detail_likes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="likes"
+            android:textColor="@color/orange"
+            app:drawableStartCompat="@drawable/ic_like" />
+
+        <TextView
+            android:id="@+id/fragment_detail_downloads"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="downloads"
+            android:textColor="@color/orange"
+            app:drawableStartCompat="@drawable/ic_download" />
+
+        <TextView
+            android:id="@+id/fragment_detail_comments"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="comments"
+            android:textColor="@color/orange"
+            app:drawableStartCompat="@drawable/ic_comment" />
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
