@@ -17,7 +17,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 //public class RecyclerViewAdapter extends PagingDataAdapter<RecyclerData, RecyclerViewAdapter.MyViewHolder> {
     // Define Loading ViewType PAGINGVERSION
   //  public static final int LOADING_ITEM = 0;
-    // Define Movie ViewType PAGINGVERSION
+    // Define Recyc ViewType PAGINGVERSION
   //  public static final int IMAGE_ITEM = 1;
   private List<RecyclerData> listItems;
 
