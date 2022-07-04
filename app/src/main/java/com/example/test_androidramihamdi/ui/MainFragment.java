@@ -277,9 +277,10 @@ public class MainFragment extends Fragment implements RecyclerViewClickInterface
                 .setAction(R.string.reessaye, v -> {
                     if (InternetCheck.isInternetAvailable(v.getContext())) {
                         binding.searchView.setQuery(queryvalue,true);
-                        if(Objects.equals(queryvalue, getString(R.string.success))) {
-                            binding.searchView.setQueryHint(queryvalue);
+                        if(Objects.equals(message, getString(R.string.noResult))) {
+                            binding.searchView.setQueryHint(getString(R.string.success));
                         }
+                        else   binding.searchView.setQueryHint(queryvalue);
 
 
                     } else initSnackbar(getString(R.string.erreur_conexion, ""), queryvalue);
